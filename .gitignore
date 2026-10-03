@@ -15,6 +15,15 @@
 # production
 /build
 
+# local packages (separate git repos)
+/packages/
+
+# local npm config (dev only)
+.npmrc
+
+# playwright cli artifacts
+.playwright-cli/
+
 # misc
 .DS_Store
 *.pem
