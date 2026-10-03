@@ -4,6 +4,11 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Loader2 from "lucide-react/dist/esm/icons/loader-2";
 import ChevronsUpDown from "lucide-react/dist/esm/icons/chevrons-up-down";
+import MapPin from "lucide-react/dist/esm/icons/map-pin";
+import { createRegionTranslator } from "@wasnaker/region-web/locales";
+import { installedWebManifests } from "@/modules/installed-modules";
+import { useInstalledModuleAccess } from "@/modules/module-access";
+import useLanguage from "@/services/i18n/use-language";
 import useAuth from "@/services/auth/use-auth";
 import useAuthActions from "@/services/auth/use-auth-actions";
 import { useTranslation } from "@/services/i18n/client";
@@ -134,6 +139,8 @@ function AppSidebar() {
   const { t } = useTranslation("common");
   const { user } = useAuth();
   const pathname = usePathname();
+  const moduleAccess = useInstalledModuleAccess();
+  const language = useLanguage();
 
   const isAdmin =
     !!user?.role && [RoleEnum.ADMIN].includes(Number(user?.role?.id));
@@ -160,6 +167,16 @@ function AppSidebar() {
                     <SidebarMenuItem>
                       <SidebarMenuButton
                         asChild
+                        isActive={pathname.endsWith("/admin-panel")}
+                      >
+                        <Link href="/admin-panel">
+                          {t("common:navigation.dashboard")}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
                         isActive={pathname.includes("/admin-panel/users")}
                       >
                         <Link href="/admin-panel/users">
@@ -167,9 +184,52 @@ function AppSidebar() {
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={pathname.includes("/admin-panel/settings")}
+                      >
+                        <Link href="/admin-panel/settings">
+                          {t("common:navigation.settings")}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
                     {/* sidebar-menu-items */}
                   </>
                 )}
+                {installedWebManifests.flatMap((manifest) => {
+                  const access = moduleAccess.isError
+                    ? undefined
+                    : moduleAccess.data?.data.find(
+                        (module) => module.id === manifest.id
+                      );
+                  if (!access?.enabled) return [];
+                  return manifest.menu
+                    .filter((item) =>
+                      access.permissions.includes(item.permission)
+                    )
+                    .map((item) => (
+                      <SidebarMenuItem
+                        key={`${manifest.id}:${item.key}`}
+                        className="module-navigation__item"
+                      >
+                        <SidebarMenuButton
+                          asChild
+                          isActive={pathname.endsWith(item.href)}
+                        >
+                          <Link href={item.href}>
+                            <MapPin
+                              className="size-4 shrink-0"
+                              aria-hidden="true"
+                            />
+                            <span>
+                              {createRegionTranslator(language)(item.labelKey)}
+                            </span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ));
+                })}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

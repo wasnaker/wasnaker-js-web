@@ -8,6 +8,8 @@
     "signUp": "Crear cuenta",
     "profile": "Perfil",
     "users": "Usuarios",
+    "dashboard": "Panel",
+    "settings": "Configuración",
     "logout": "Cerrar sesión"
   },
   "formInputs": {

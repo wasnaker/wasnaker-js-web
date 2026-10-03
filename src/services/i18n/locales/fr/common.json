@@ -8,6 +8,8 @@
     "signUp": "S'inscrire",
     "profile": "Profil",
     "users": "Utilisateurs",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres",
     "logout": "Se déconnecter"
   },
   "formInputs": {

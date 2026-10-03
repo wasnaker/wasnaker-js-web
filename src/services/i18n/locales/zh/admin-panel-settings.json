@@ -1,0 +1,49 @@
+{
+  "title": "设置",
+  "description": "应用全局偏好设置",
+  "groups": {
+    "label": "设置分组",
+    "general": "常规",
+    "company": "公司",
+    "localization": "本地化",
+    "email": "电子邮件",
+    "security": "安全",
+    "files": "文件"
+  },
+  "fields": {
+    "app": { "name": "应用名称", "defaultUrl": "默认网址" },
+    "company": { "name": "公司名称" },
+    "localization": {
+      "defaultLanguage": "默认语言",
+      "timezone": "时区",
+      "dateFormat": "日期格式"
+    },
+    "email": {
+      "smtpHost": "SMTP 主机",
+      "smtpPort": "SMTP 端口",
+      "smtpUser": "SMTP 用户名",
+      "smtpPassword": "SMTP 密码",
+      "fromName": "发件人名称",
+      "fromEmail": "发件人邮箱"
+    },
+    "security": { "registrationEnabled": "开放注册" },
+    "files": { "maxUploadSizeMb": "最大上传大小 (MB)" }
+  },
+  "actions": { "save": "保存更改", "retry": "重试" },
+  "states": {
+    "loading": "正在加载设置",
+    "loadFailed": "无法加载设置。",
+    "empty": "此分组暂无设置。"
+  },
+  "hints": {
+    "secret": "留空以保留已保存的值。",
+    "readonly": "由系统管理。"
+  },
+  "placeholders": { "secret": "已安全保存" },
+  "messages": {
+    "saved": "设置已保存。",
+    "saveFailed": "无法保存设置。",
+    "invalidNumber": "请输入有效数字。",
+    "invalidJson": "请输入有效的 JSON。"
+  }
+}

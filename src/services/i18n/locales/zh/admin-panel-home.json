@@ -1,4 +1,10 @@
 {
   "title": "管理后台",
-  "description": "欢迎使用管理后台。"
+  "description": "Core dashboard workspace for platform widgets.",
+  "loading": "Loading dashboard...",
+  "loadError": "Dashboard could not be loaded.",
+  "retry": "Retry",
+  "widgets": "小工具",
+  "toolbar_show_areas": "显示小工具区域",
+  "toolbar_hide_areas": "隐藏小工具区域"
 }

@@ -1,0 +1,49 @@
+{
+  "title": "Paramètres",
+  "description": "Préférences générales de l’application",
+  "groups": {
+    "label": "Groupes de paramètres",
+    "general": "Général",
+    "company": "Entreprise",
+    "localization": "Localisation",
+    "email": "E-mail",
+    "security": "Sécurité",
+    "files": "Fichiers"
+  },
+  "fields": {
+    "app": { "name": "Nom de l’application", "defaultUrl": "URL par défaut" },
+    "company": { "name": "Nom de l’entreprise" },
+    "localization": {
+      "defaultLanguage": "Langue par défaut",
+      "timezone": "Fuseau horaire",
+      "dateFormat": "Format de date"
+    },
+    "email": {
+      "smtpHost": "Hôte SMTP",
+      "smtpPort": "Port SMTP",
+      "smtpUser": "Identifiant SMTP",
+      "smtpPassword": "Mot de passe SMTP",
+      "fromName": "Nom de l’expéditeur",
+      "fromEmail": "E-mail de l’expéditeur"
+    },
+    "security": { "registrationEnabled": "Inscription publique" },
+    "files": { "maxUploadSizeMb": "Taille maximale des fichiers (Mo)" }
+  },
+  "actions": { "save": "Enregistrer", "retry": "Réessayer" },
+  "states": {
+    "loading": "Chargement des paramètres",
+    "loadFailed": "Impossible de charger les paramètres.",
+    "empty": "Aucun paramètre dans ce groupe pour le moment."
+  },
+  "hints": {
+    "secret": "Laissez vide pour conserver la valeur enregistrée.",
+    "readonly": "Géré par le système."
+  },
+  "placeholders": { "secret": "Enregistré de manière sécurisée" },
+  "messages": {
+    "saved": "Paramètres enregistrés.",
+    "saveFailed": "Impossible d’enregistrer les paramètres.",
+    "invalidNumber": "Saisissez un nombre valide.",
+    "invalidJson": "Saisissez un JSON valide."
+  }
+}

@@ -3,10 +3,23 @@
   "title1": "Edit Profile",
   "title2": "Change Email",
   "title3": "Change Password",
+  "description": "Manage your personal details and account access.",
+  "tabs": {
+    "label": "Profile sections",
+    "profile": "Profile",
+    "email": "Email",
+    "security": "Password & Security"
+  },
+  "states": {
+    "loading": "Loading profile sections",
+    "loadFailed": "Could not load profile sections.",
+    "panelUnavailable": "This profile section is not available."
+  },
   "actions": {
     "edit": "Edit",
     "submit": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "retry": "Retry"
   },
   "inputs": {
     "firstName": {

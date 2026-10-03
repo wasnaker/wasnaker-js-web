@@ -1,4 +1,10 @@
 {
   "title": "Admin Panel",
-  "description": "Welcome to the admin panel."
+  "description": "Core dashboard workspace for platform widgets.",
+  "loading": "Loading dashboard...",
+  "loadError": "Dashboard could not be loaded.",
+  "retry": "Retry",
+  "widgets": "Widgets",
+  "toolbar_show_areas": "Show widget areas",
+  "toolbar_hide_areas": "Hide widget areas"
 }

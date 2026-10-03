@@ -8,6 +8,8 @@
     "signUp": "Зареєструватися",
     "profile": "Профіль",
     "users": "Користувачі",
+    "dashboard": "Дашборд",
+    "settings": "Налаштування",
     "logout": "Вийти"
   },
   "formInputs": {

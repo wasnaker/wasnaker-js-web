@@ -1,0 +1,49 @@
+{
+  "title": "الإعدادات",
+  "description": "تفضيلات التطبيق العامة",
+  "groups": {
+    "label": "مجموعات الإعدادات",
+    "general": "عام",
+    "company": "الشركة",
+    "localization": "الإعدادات المحلية",
+    "email": "البريد الإلكتروني",
+    "security": "الأمان",
+    "files": "الملفات"
+  },
+  "fields": {
+    "app": { "name": "اسم التطبيق", "defaultUrl": "الرابط الافتراضي" },
+    "company": { "name": "اسم الشركة" },
+    "localization": {
+      "defaultLanguage": "اللغة الافتراضية",
+      "timezone": "المنطقة الزمنية",
+      "dateFormat": "تنسيق التاريخ"
+    },
+    "email": {
+      "smtpHost": "خادم SMTP",
+      "smtpPort": "منفذ SMTP",
+      "smtpUser": "اسم مستخدم SMTP",
+      "smtpPassword": "كلمة مرور SMTP",
+      "fromName": "اسم المرسل",
+      "fromEmail": "بريد المرسل"
+    },
+    "security": { "registrationEnabled": "التسجيل العام" },
+    "files": { "maxUploadSizeMb": "الحد الأقصى للرفع (MB)" }
+  },
+  "actions": { "save": "حفظ التغييرات", "retry": "حاول مرة أخرى" },
+  "states": {
+    "loading": "جارٍ تحميل الإعدادات",
+    "loadFailed": "تعذر تحميل الإعدادات.",
+    "empty": "لا توجد إعدادات في هذه المجموعة بعد."
+  },
+  "hints": {
+    "secret": "اترك الحقل فارغًا للاحتفاظ بالقيمة المحفوظة.",
+    "readonly": "تتم إدارته بواسطة النظام."
+  },
+  "placeholders": { "secret": "محفوظ بأمان" },
+  "messages": {
+    "saved": "تم حفظ الإعدادات.",
+    "saveFailed": "تعذر حفظ الإعدادات.",
+    "invalidNumber": "أدخل رقمًا صالحًا.",
+    "invalidJson": "أدخل JSON صالحًا."
+  }
+}

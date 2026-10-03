@@ -8,6 +8,8 @@
     "signUp": "साइन अप",
     "profile": "प्रोफ़ाइल",
     "users": "उपयोगकर्ता",
+    "dashboard": "डैशबोर्ड",
+    "settings": "सेटिंग्स",
     "logout": "लॉगआउट"
   },
   "formInputs": {

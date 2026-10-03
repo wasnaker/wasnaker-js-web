@@ -7,16 +7,26 @@ import FormTextInput from "@/components/form/text-input/form-text-input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import withPageRequiredAuth from "@/services/auth/with-page-required-auth";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { TabsWorkspace } from "@wasnaker/core-web";
+import Loader2 from "lucide-react/dist/esm/icons/loader-2";
 import useAuth from "@/services/auth/use-auth";
 import { useSnackbar } from "@/hooks/use-snackbar";
-import Link from "@/components/link";
 import FormAvatarInput from "@/components/form/avatar-input/form-avatar-input";
 import { FileEntity } from "@/services/api/types/file-entity";
 import useLeavePage from "@/services/leave-page/use-leave-page";
 import HTTP_CODES_ENUM from "@/services/api/types/http-codes";
 import { useTranslation } from "@/services/i18n/client";
 import { UserProviderEnum } from "@/services/api/types/user";
+import {
+  ProfileTab,
+  useGetProfileTabsService,
+} from "@/services/api/services/profile";
+import { getProfileTabPanel } from "@/services/profile/profile-tab-panel.registry";
+import "@/modules/profile-tab-contributions";
+
+const profileTabsQueryKey = ["profile", "tabs"];
 
 type EditProfileBasicInfoFormData = {
   firstName: string;
@@ -186,7 +196,10 @@ function FormBasicInfo() {
   return (
     <FormProvider {...methods}>
       <div className="mx-auto w-full max-w-md px-4">
-        <form onSubmit={onSubmit}>
+        <form
+          className="profile-page__form profile-page__form--basic"
+          onSubmit={onSubmit}
+        >
           <div className="mt-6 mb-6 grid grid-cols-12 gap-4">
             <div className="col-span-12">
               <h2 className="text-xl font-semibold">{t("profile:title1")}</h2>
@@ -218,11 +231,12 @@ function FormBasicInfo() {
               <BasicInfoFormActions />
               <span className="ms-2">
                 <Button
-                  asChild
+                  type="button"
                   variant="secondary"
+                  onClick={() => reset()}
                   data-testid="cancel-edit-profile"
                 >
-                  <Link href="/profile">{t("profile:actions.cancel")}</Link>
+                  {t("profile:actions.cancel")}
                 </Button>
               </span>
             </div>
@@ -283,7 +297,10 @@ function FormChangeEmail() {
   return (
     <FormProvider {...methods}>
       <div className="mx-auto w-full max-w-md px-4">
-        <form onSubmit={onSubmit}>
+        <form
+          className="profile-page__form profile-page__form--email"
+          onSubmit={onSubmit}
+        >
           <div className="mb-6 grid grid-cols-12 gap-4">
             <div className="col-span-12">
               <h2 className="text-xl font-semibold">{t("profile:title2")}</h2>
@@ -313,11 +330,12 @@ function FormChangeEmail() {
               <ChangeEmailFormActions />
               <span className="ms-2">
                 <Button
-                  asChild
+                  type="button"
                   variant="secondary"
+                  onClick={() => reset()}
                   data-testid="cancel-edit-email"
                 >
-                  <Link href="/profile">{t("profile:actions.cancel")}</Link>
+                  {t("profile:actions.cancel")}
                 </Button>
               </span>
             </div>
@@ -380,7 +398,10 @@ function FormChangePassword() {
   return (
     <FormProvider {...methods}>
       <div className="mx-auto w-full max-w-md px-4">
-        <form onSubmit={onSubmit}>
+        <form
+          className="profile-page__form profile-page__form--security"
+          onSubmit={onSubmit}
+        >
           <div className="mb-4 grid grid-cols-12 gap-4">
             <div className="col-span-12">
               <h2 className="text-xl font-semibold">{t("profile:title3")}</h2>
@@ -416,11 +437,12 @@ function FormChangePassword() {
               <ChangePasswordFormActions />
               <span className="ms-2">
                 <Button
-                  asChild
+                  type="button"
                   variant="secondary"
+                  onClick={() => reset()}
                   data-testid="cancel-edit-password"
                 >
-                  <Link href="/profile">{t("profile:actions.cancel")}</Link>
+                  {t("profile:actions.cancel")}
                 </Button>
               </span>
             </div>
@@ -446,12 +468,81 @@ function FormChangePasswordWrapper() {
 }
 
 function EditProfile() {
+  const { t } = useTranslation("profile");
+  const { user } = useAuth();
+  const fetchProfileTabs = useGetProfileTabsService();
+  const [activeTabKey, setActiveTabKey] = useState("profile");
+  const profileTabsQuery = useQuery({
+    queryKey: profileTabsQueryKey,
+    queryFn: async ({ signal }) => {
+      const { status, data } = await fetchProfileTabs({ signal });
+      if (status !== HTTP_CODES_ENUM.OK)
+        throw new Error("profileTabsLoadFailed");
+      return data;
+    },
+  });
+
+  const tabs = useMemo(
+    () =>
+      (profileTabsQuery.data ?? []).filter(
+        (tab) =>
+          !["email", "security"].includes(tab.key) ||
+          user?.provider === UserProviderEnum.EMAIL
+      ),
+    [profileTabsQuery.data, user?.provider]
+  );
+  const renderTabPanel = (tab: ProfileTab) => {
+    if (tab.key === "profile") return <FormBasicInfo />;
+    if (tab.key === "email") return <FormChangeEmailWrapper />;
+    if (tab.key === "security") return <FormChangePasswordWrapper />;
+
+    const Panel = getProfileTabPanel(tab.key);
+    return Panel ? (
+      <Panel />
+    ) : (
+      <p className="py-5 text-sm text-muted-foreground" role="status">
+        {t("states.panelUnavailable")}
+      </p>
+    );
+  };
+
   return (
-    <>
-      <FormBasicInfo />
-      <FormChangeEmailWrapper />
-      <FormChangePasswordWrapper />
-    </>
+    <div className="profile-page mx-auto w-full max-w-5xl px-4 py-8">
+      <header className="profile-page__header mb-6">
+        <h1 className="text-2xl font-semibold">{t("title")}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">{t("description")}</p>
+      </header>
+
+      {profileTabsQuery.isPending ? (
+        <div className="flex min-h-52 items-center justify-center text-muted-foreground">
+          <Loader2
+            className="size-5 animate-spin"
+            aria-label={t("states.loading")}
+          />
+        </div>
+      ) : profileTabsQuery.isError ? (
+        <div className="flex min-h-52 flex-col items-center justify-center gap-3 text-sm">
+          <p role="alert">{t("states.loadFailed")}</p>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => profileTabsQuery.refetch()}
+          >
+            {t("actions.retry")}
+          </Button>
+        </div>
+      ) : (
+        <TabsWorkspace
+          tabs={tabs}
+          value={activeTabKey}
+          onValueChange={setActiveTabKey}
+          navigationLabel={t("tabs.label")}
+          classPrefix="profile-page"
+          getLabel={(tab) => t(`tabs.${tab.key}`, { defaultValue: tab.label })}
+          renderPanel={renderTabPanel}
+        />
+      )}
+    </div>
   );
 }
 

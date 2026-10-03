@@ -1,0 +1,49 @@
+{
+  "title": "Налаштування",
+  "description": "Загальні параметри застосунку",
+  "groups": {
+    "label": "Групи налаштувань",
+    "general": "Загальні",
+    "company": "Компанія",
+    "localization": "Локалізація",
+    "email": "Електронна пошта",
+    "security": "Безпека",
+    "files": "Файли"
+  },
+  "fields": {
+    "app": { "name": "Назва застосунку", "defaultUrl": "URL за замовчуванням" },
+    "company": { "name": "Назва компанії" },
+    "localization": {
+      "defaultLanguage": "Мова за замовчуванням",
+      "timezone": "Часовий пояс",
+      "dateFormat": "Формат дати"
+    },
+    "email": {
+      "smtpHost": "Хост SMTP",
+      "smtpPort": "Порт SMTP",
+      "smtpUser": "Ім’я користувача SMTP",
+      "smtpPassword": "Пароль SMTP",
+      "fromName": "Ім’я відправника",
+      "fromEmail": "Пошта відправника"
+    },
+    "security": { "registrationEnabled": "Публічна реєстрація" },
+    "files": { "maxUploadSizeMb": "Максимальний розмір файлу (МБ)" }
+  },
+  "actions": { "save": "Зберегти зміни", "retry": "Спробувати ще раз" },
+  "states": {
+    "loading": "Завантаження налаштувань",
+    "loadFailed": "Не вдалося завантажити налаштування.",
+    "empty": "У цій групі ще немає налаштувань."
+  },
+  "hints": {
+    "secret": "Залиште порожнім, щоб зберегти поточне значення.",
+    "readonly": "Керується системою."
+  },
+  "placeholders": { "secret": "Збережено безпечно" },
+  "messages": {
+    "saved": "Налаштування збережено.",
+    "saveFailed": "Не вдалося зберегти налаштування.",
+    "invalidNumber": "Введіть коректне число.",
+    "invalidJson": "Введіть коректний JSON."
+  }
+}

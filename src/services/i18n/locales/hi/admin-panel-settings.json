@@ -1,0 +1,49 @@
+{
+  "title": "सेटिंग्स",
+  "description": "ऐप्लिकेशन की सामान्य प्राथमिकताएँ",
+  "groups": {
+    "label": "सेटिंग समूह",
+    "general": "सामान्य",
+    "company": "कंपनी",
+    "localization": "स्थान और भाषा",
+    "email": "ईमेल",
+    "security": "सुरक्षा",
+    "files": "फ़ाइलें"
+  },
+  "fields": {
+    "app": { "name": "ऐप्लिकेशन का नाम", "defaultUrl": "डिफ़ॉल्ट URL" },
+    "company": { "name": "कंपनी का नाम" },
+    "localization": {
+      "defaultLanguage": "डिफ़ॉल्ट भाषा",
+      "timezone": "समय क्षेत्र",
+      "dateFormat": "तारीख़ का प्रारूप"
+    },
+    "email": {
+      "smtpHost": "SMTP होस्ट",
+      "smtpPort": "SMTP पोर्ट",
+      "smtpUser": "SMTP उपयोगकर्ता नाम",
+      "smtpPassword": "SMTP पासवर्ड",
+      "fromName": "भेजने वाले का नाम",
+      "fromEmail": "भेजने वाले का ईमेल"
+    },
+    "security": { "registrationEnabled": "सार्वजनिक पंजीकरण" },
+    "files": { "maxUploadSizeMb": "अधिकतम अपलोड आकार (MB)" }
+  },
+  "actions": { "save": "बदलाव सहेजें", "retry": "फिर से कोशिश करें" },
+  "states": {
+    "loading": "सेटिंग्स लोड हो रही हैं",
+    "loadFailed": "सेटिंग्स लोड नहीं हो सकीं।",
+    "empty": "इस समूह में अभी कोई सेटिंग नहीं है।"
+  },
+  "hints": {
+    "secret": "सहेजा गया मान रखने के लिए खाली छोड़ें।",
+    "readonly": "सिस्टम द्वारा प्रबंधित।"
+  },
+  "placeholders": { "secret": "सुरक्षित रूप से सहेजा गया" },
+  "messages": {
+    "saved": "सेटिंग्स सहेज दी गईं।",
+    "saveFailed": "सेटिंग्स सहेजी नहीं जा सकीं।",
+    "invalidNumber": "मान्य संख्या दर्ज करें।",
+    "invalidJson": "मान्य JSON दर्ज करें।"
+  }
+}

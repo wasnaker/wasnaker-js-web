@@ -1,0 +1,10 @@
+{
+  "title": "Admin Panel",
+  "description": "Core dashboard workspace for platform widgets.",
+  "loading": "Loading dashboard...",
+  "loadError": "Dashboard could not be loaded.",
+  "retry": "Retry",
+  "widgets": "위젯",
+  "toolbar_show_areas": "위젯 영역 표시",
+  "toolbar_hide_areas": "위젯 영역 숨기기"
+}

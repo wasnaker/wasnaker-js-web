@@ -8,6 +8,8 @@
     "signUp": "Sign Up",
     "profile": "Profile",
     "users": "Users",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
     "logout": "Logout"
   },
   "formInputs": {

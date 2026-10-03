@@ -1,4 +1,10 @@
 {
   "title": "لوحة التحكم",
-  "description": "مرحبًا بك في لوحة التحكم."
+  "description": "Core dashboard workspace for platform widgets.",
+  "loading": "Loading dashboard...",
+  "loadError": "Dashboard could not be loaded.",
+  "retry": "Retry",
+  "widgets": "العناصر",
+  "toolbar_show_areas": "إظهار مناطق العناصر",
+  "toolbar_hide_areas": "إخفاء مناطق العناصر"
 }

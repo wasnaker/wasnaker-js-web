@@ -1,0 +1,49 @@
+{
+  "title": "Settings",
+  "description": "Application-wide preferences",
+  "groups": {
+    "label": "Settings groups",
+    "general": "General",
+    "company": "Company",
+    "localization": "Localization",
+    "email": "Email",
+    "security": "Security",
+    "files": "Files"
+  },
+  "fields": {
+    "app": { "name": "Application name", "defaultUrl": "Default URL" },
+    "company": { "name": "Company name" },
+    "localization": {
+      "defaultLanguage": "Default language",
+      "timezone": "Time zone",
+      "dateFormat": "Date format"
+    },
+    "email": {
+      "smtpHost": "SMTP host",
+      "smtpPort": "SMTP port",
+      "smtpUser": "SMTP username",
+      "smtpPassword": "SMTP password",
+      "fromName": "Sender name",
+      "fromEmail": "Sender email"
+    },
+    "security": { "registrationEnabled": "Public registration" },
+    "files": { "maxUploadSizeMb": "Maximum upload size (MB)" }
+  },
+  "actions": { "save": "Save changes", "retry": "Try again" },
+  "states": {
+    "loading": "Loading settings",
+    "loadFailed": "Settings could not be loaded.",
+    "empty": "There are no settings in this group yet."
+  },
+  "hints": {
+    "secret": "Leave blank to keep the saved value.",
+    "readonly": "Managed by the system."
+  },
+  "placeholders": { "secret": "Stored securely" },
+  "messages": {
+    "saved": "Settings saved.",
+    "saveFailed": "Settings could not be saved.",
+    "invalidNumber": "Enter a valid number.",
+    "invalidJson": "Enter valid JSON."
+  }
+}

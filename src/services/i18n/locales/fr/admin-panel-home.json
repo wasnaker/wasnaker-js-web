@@ -1,4 +1,10 @@
 {
   "title": "Panneau d'administration",
-  "description": "Bienvenue dans le panneau d'administration."
+  "description": "Core dashboard workspace for platform widgets.",
+  "loading": "Loading dashboard...",
+  "loadError": "Dashboard could not be loaded.",
+  "retry": "Retry",
+  "widgets": "Widgets",
+  "toolbar_show_areas": "Afficher les zones de widgets",
+  "toolbar_hide_areas": "Masquer les zones de widgets"
 }
